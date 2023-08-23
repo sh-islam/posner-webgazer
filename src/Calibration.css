@@ -1,0 +1,56 @@
+.calibration{
+    margin-top: 30px;
+    height: 720px;
+    width: 1280px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+}
+
+.top-left, .top-mid, .top-right, .mid-left, .mid-mid, .mid-right, .bot-left, .bot-mid, .bot-right{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    background-color: red;
+}
+
+.top-left{
+    top: 15%;
+    left: 15%;
+}
+.top-mid{
+    top: 15%;
+}
+.top-right{
+    top: 15%;
+    right: 15%;
+}
+
+.mid-left{
+    left: 15%;
+}
+.mid-right{
+    right: 15%;
+}
+
+.bot-left{
+    bottom: 15%;
+    left: 15%;
+}
+.bot-mid{
+    bottom: 15%;
+}
+.bot-right{
+    bottom: 15%;
+    right: 15%;
+}
+
+.complete {
+    background-color: green;
+}
+
+.completeCalibrationBtn{
+    margin-top: 10%;
+}

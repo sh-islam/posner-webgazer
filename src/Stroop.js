@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import rightCue from './images/right-arrow-cue.png';
 
-console.log('right cue', rightCue);
-
 function Stroop({ trialData }) {
     const [currentTrial, setCurrentTrial] = useState(0);
     const [currentHtml, setCurrentHtml] = useState(null);
@@ -17,7 +15,6 @@ function Stroop({ trialData }) {
             
             // Prepare html content based on trial data
             const arrowCue = trial.arrowCue;
-            console.log('arrow cue', arrowCue);
             const targetSide = trial.targetSide;
             let targetStyle = {};
             
@@ -58,14 +55,18 @@ function Stroop({ trialData }) {
 
                 // Start the trial timer
                 const trialTimerId = setTimeout(() => {
-                    // Handle timeout, record response time
-                    setResponseTimes(prevResponseTimes => [...prevResponseTimes, trialTimeout]);
-                    
+                    // Start the timer now
+                    setStartTime(Date.now());
+
+                    // Call webgazer, find when eyetracking collides with coordinates of target obj
+                    // Find that time, then setResponseTimes as time - startTime[currentTrial]
+                    // Then set the next trial and return, even if there's time remaining
+
                     // Move onto the next trial
                     setCurrentTrial(currentTrial + 1);
                 }, trialTimeout);
 
-                setStartTime(Date.now());
+                
 
                 // Clean up trial timer on unmount or when trial changes
                 return () => {
