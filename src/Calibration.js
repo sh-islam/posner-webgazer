@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Calibration.css';
+window.saveDataAcrossSessions = true;
 
 function Calibration({ completeCalibration }) {
     const [divClicks, setDivClicks] = useState(Array(9).fill(0));
@@ -14,6 +15,20 @@ function Calibration({ completeCalibration }) {
 
     const allDivsComplete = divClicks.every(clicks => clicks === 10);
 
+    const webgazer = window.webgazer;
+    useEffect(() => {
+        webgazer.setGazeListener((data, clock) => {
+            webgazer.showVideo(true);
+            console.log(data, clock);
+            window.saveDataAcrossSessions = true; // save data for real experiment
+        }).begin();
+
+        return () => {
+            webgazer.end(); // Cleanup function to stop webgazer when component unmounts
+        };
+    }, []);
+
+    
     return (
         <div className='calibration'>
             <button
