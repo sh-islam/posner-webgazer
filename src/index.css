@@ -1,13 +1,85 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.startBtn{
+    margin-top: 40px;
+}
+
+.entry-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.entry-data input {
+  width: 50px; 
+}
+
+.experiment{
+    margin-top: 100px;
+    height: 720px;
+    width: 1280px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+}
+.cue{
+    height: 100px;
+    width: 100px;
+    /* background-color: white; */
+    position: absolute;
+    display: flex;
+}
+.cue img{
+    width: 100px;
+    height: 100px;
+}
+
+.flipped {
+    transform: scaleX(-1);
+}
+  
+.target{
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    position: absolute;
+}
+.target-left{
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    position: absolute;
+    left: 15%;
+}
+.target-right{
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    position: absolute;
+    right: 15%;
+}
+
+@media (max-width: 719px) {
+    .experiment{
+        width: 100%;
+        height: 400px;
+    }
+
+    .cue, .target-left, .target-right, .target{
+        height: 33px;
+        width: 33px;
+    }
 }
