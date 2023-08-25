@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Stroop from './Stroop';
 import Calibration from './Calibration';
-import Test from './test';
+import Results from './Results'
+//import Test from './test';
+
 
 
 function createStudyData(numTrialsPerCondition) {
@@ -28,6 +30,7 @@ function App() {
     const [calibrationStarted, setCalibrationStarted] = useState(false);
     const [calibrationCompleted, setCalibrationCompleted] = useState(false);
     const [trialsStarted, setTrialsStarted] = useState(false);
+    const [trialResults, setTrialResults] = useState([]);
 
     // Set number of trials
     const handleNumTrialsChange = (event) => {
@@ -62,7 +65,16 @@ function App() {
         setTrialsStarted(true); 
     }
     
+    const handleTrialsCompleted = (trialResults) => {
+        const combinedData = trialData.map((data, index) => ({
+            ...data, // Copy the properties from trialData
+            responseTime: trialResults[index] // Add responseTime from trialResults
+        }));
+        setTrialResults(combinedData);
+    }
     
+    
+
     return (
     <div className='App'>
         <form className='entry-data'>
@@ -77,12 +89,13 @@ function App() {
             Calibrate eye tracker
         </button>}
         {calibrationCompleted && 
-        <button className='startBtn' type='button' disabled={!calibrationCompleted || trialsStarted} onClick={handleStartTrials}>
+        <button className='startBtn' type='button' disabled= {trialsStarted} onClick={handleStartTrials}>
             Start trials
         </button>}
         </form>
         {calibrationStarted && !calibrationCompleted && <Calibration completeCalibration = {handleCalibrationComplete}/>}
-        {trialsStarted && <Stroop trialData={trialData} />}
+        {trialsStarted && trialResults.length === 0 && <Stroop trialData={trialData} completeTrials = {handleTrialsCompleted} />}
+        {trialResults.length > 0 && <Results results={trialResults}/>}
         {/* <Test/> */}
     </div>
     );

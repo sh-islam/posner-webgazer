@@ -38,9 +38,11 @@ body{
 .cue{
     height: 100px;
     width: 100px;
-    /* background-color: white; */
     position: absolute;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
 }
 .cue img{
     width: 100px;
@@ -71,6 +73,7 @@ body{
     position: absolute;
     right: 15%;
 }
+
 
 @media (max-width: 719px) {
     .experiment{
