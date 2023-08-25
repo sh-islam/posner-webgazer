@@ -1,4 +1,5 @@
 import React from "react";
+import Graph from './Graph';
 
 export default function Results({ results }) {
     // Separate valid and invalid results
@@ -84,6 +85,7 @@ export default function Results({ results }) {
             <div className="download-container">
                 <button onClick={generateCSV}>Download CSV</button>
             </div>
+            <Graph validMeanRT = {validMean} validStd = {validStdDev}invalidMeanRT = {invalidMean} invalidStd = {invalidStdDev}/>
         </div>
     );
 }
