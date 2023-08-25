@@ -74,6 +74,26 @@ body{
     right: 15%;
 }
 
+.results{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;  
+    align-items: center;
+    width: 600px;   
+}
+
+.download-container {
+    padding-top: 30px;
+}
+
+.bargraph{
+    margin-top: 15px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 @media (max-width: 719px) {
     .experiment{
