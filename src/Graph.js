@@ -17,7 +17,7 @@ export default function Graph({ validMeanRT, validStd, invalidMeanRT, invalidStd
 
     return (
         <div className='bargraph'>
-            <h2>Validity and Mean RT</h2>
+            <h2>Validity and Mean RT (ms)</h2>
             <ResponsiveContainer width="100%" height={300}>
                 <BarChart
                     data={data}

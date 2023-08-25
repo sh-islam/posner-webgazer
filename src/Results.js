@@ -32,7 +32,7 @@ export default function Results({ results }) {
                 { title: "Valid", field: "valid" },
                 { title: "Arrow Cue", field: "arrowCue" },
                 { title: "Target Side", field: "targetSide" },
-                { title: "Response Time", field: "responseTime" },
+                { title: "Response Time (ms)", field: "responseTime" },
             ],
             data: results, // Use the results array as data source
         });
