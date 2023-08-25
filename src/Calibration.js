@@ -17,7 +17,7 @@ function Calibration({ completeCalibration }) {
 
     const webgazer = window.webgazer;
     useEffect(() => {
-        webgazer.setGazeListener((data, clock) => {
+        webgazer.setGazeListener(() => {
             webgazer.showVideo(true);
             
             window.saveDataAcrossSessions = true; // save data for real experiment
@@ -26,7 +26,7 @@ function Calibration({ completeCalibration }) {
         return () => {
             webgazer.pause(); // Cleanup function to stop webgazer when component unmounts
         };
-    }, []);
+    }, [webgazer]);
 
     
     return (
