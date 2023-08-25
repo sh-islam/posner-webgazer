@@ -10,6 +10,16 @@ body{
     align-items: center;
 }
 
+.readme {
+    background-color: gainsboro;
+    padding: 50px;
+    margin: 20px;
+}
+
+.experiment-instructions{
+    margin-top: 75px;
+}
+
 .entry-data button{
     margin-top: 10px;
 }

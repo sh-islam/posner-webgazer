@@ -1,7 +1,11 @@
 import React from "react";
 import Graph from './Graph';
+import { useEffect } from 'react';
+import {Tabulator} from 'tabulator-tables';
 
-export default function Results({ results }) {
+
+
+export default function Results({ results }) { 
     // Separate valid and invalid results
     const validResults = results.filter(result => result.valid);
     const invalidResults = results.filter(result => !result.valid);
@@ -18,6 +22,42 @@ export default function Results({ results }) {
     const validStdDev = calculateStandardDeviation(validResponseTimes, validMean);
     const invalidMean = calculateMean(invalidResponseTimes);
     const invalidStdDev = calculateStandardDeviation(invalidResponseTimes, invalidMean);
+
+
+    // Tabulator 
+    useEffect(() => {
+        new Tabulator("#results-table", {
+            height: '100%',
+            columns: [
+                { title: "Valid", field: "valid" },
+                { title: "Arrow Cue", field: "arrowCue" },
+                { title: "Target Side", field: "targetSide" },
+                { title: "Response Time", field: "responseTime" },
+            ],
+            data: results, // Use the results array as data source
+        });
+
+        const statsData = [
+            {
+                valid: validMean.toFixed(2),
+                arrowCue: validStdDev.toFixed(2),
+                targetSide: invalidMean.toFixed(2),
+                responseTime: invalidStdDev.toFixed(2),
+            }
+        ];
+
+        new Tabulator("#stats-table", {
+            height: '100%',
+            columns: [
+                { title: "Valid mean", field: "valid" },
+                { title: "Valid std", field: "arrowCue" },
+                { title: "Invalid mean", field: "targetSide" },
+                { title: "Invalid std", field: "responseTime" },
+            ],
+            data: statsData, 
+        });
+
+    },[results, invalidMean, invalidStdDev, validMean, validStdDev]);
 
     const generateCSV = () => {
         const csvContent = [
@@ -40,52 +80,17 @@ export default function Results({ results }) {
     return (
         <div className="results">
             <h1>Results</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Valid</th>
-                        <th>Arrow Cue</th>
-                        <th>Target Side</th>
-                        <th>Response Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {results.map((result, index) => (
-                        <tr key={index}>
-                            <td>{result.valid ? "True" : "False"}</td>
-                            <td>{result.arrowCue}</td>
-                            <td>{result.targetSide}</td>
-                            <td>{result.responseTime}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div id="results-table"></div>
             <h2>Statistics</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Mean</th>
-                        <th>Standard Deviation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Valid Trials</td>
-                        <td>{validMean.toFixed(2)}</td>
-                        <td>{validStdDev.toFixed(2)}</td>
-                    </tr>
-                    <tr>
-                        <td>Invalid Trials</td>
-                        <td>{invalidMean.toFixed(2)}</td>
-                        <td>{invalidStdDev.toFixed(2)}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="stats-table"></div>
             <div className="download-container">
                 <button onClick={generateCSV}>Download CSV</button>
             </div>
-            <Graph validMeanRT = {validMean} validStd = {validStdDev}invalidMeanRT = {invalidMean} invalidStd = {invalidStdDev}/>
+            <Graph validMeanRT = {validMean}
+                validStd = {validStdDev}
+                invalidMeanRT = {invalidMean}
+                invalidStd = {invalidStdDev}
+            />
         </div>
     );
 }
