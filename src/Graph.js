@@ -30,7 +30,7 @@ export default function Graph({ validMeanRT, validStd, invalidMeanRT, invalidStd
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
+                    <YAxis label={{ value: 'RT (ms)', angle: -90, position: 'insideLeft', offset: -10 }} />
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="valid_RT" fill="#8884d8" name="Valid Mean RT" />

@@ -61,7 +61,7 @@ export default function Results({ results }) {
 
     const generateCSV = () => {
         const csvContent = [
-            "Valid,Arrow Cue,Target Side,Response Time",
+            "Valid,Arrow Cue,Target Side,Response Time (ms)",
             ...results.map(result => `${result.valid},${result.arrowCue},${result.targetSide},${result.responseTime}`),
             "", // Add an empty line to separate results from statistics
             "Category,Mean,Standard Deviation",
