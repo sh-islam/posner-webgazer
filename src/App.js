@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Stroop from './Stroop';
 import Calibration from './Calibration';
 import Results from './Results'
@@ -26,12 +26,31 @@ function createStudyData(numTrialsPerCondition) {
 }
 
 function App() {
+    const minWidthForContent = 1280; // Minimum width for content
+    // State to track whether the screen width is sufficient for rendering content
+    const [screenWidthSufficient, setScreenWidthSufficient] = useState(window.innerWidth >= minWidthForContent);
     const [numTrials, setNumTrials] = useState('');
     const [trialData, setTrialData] = useState([]);
     const [calibrationStarted, setCalibrationStarted] = useState(false);
     const [calibrationCompleted, setCalibrationCompleted] = useState(false);
     const [trialsStarted, setTrialsStarted] = useState(false);
     const [trialResults, setTrialResults] = useState([]);
+
+    // Update the screenWidthSufficient state when the window size changes
+    const handleResize = () => {
+        setScreenWidthSufficient(window.innerWidth >= minWidthForContent);
+    };
+
+     // Attach event listener for window resize
+    useEffect(() => {
+       
+        window.addEventListener('resize', handleResize);
+
+        // Clean up event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // Set number of trials
     const handleNumTrialsChange = (event) => {
@@ -81,8 +100,15 @@ function App() {
     }
     
     
+    if (!screenWidthSufficient) {
+        return (
+            <div className="viewport-error">
+                To view this page, please use a device with a width greater or equal to 1280px.
+            </div>
+        );
+    }
 
-    return (
+    else return (
     <div className='App'>
         <div className='readme'>
             <h1>Posner Cueing Task</h1>
