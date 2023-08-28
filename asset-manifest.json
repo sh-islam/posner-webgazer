@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/posner-webgazer-gh-pages/static/css/main.0c31b976.css",
+    "main.js": "/posner-webgazer-gh-pages/static/js/main.0241d488.js",
+    "static/media/right-arrow-cue.png": "/posner-webgazer-gh-pages/static/media/right-arrow-cue.9586b415ea91624cf3df.png",
+    "static/media/posner_block_design.png": "/posner-webgazer-gh-pages/static/media/posner_block_design.cc4769cd57dcf90351f0.png",
+    "index.html": "/posner-webgazer-gh-pages/index.html",
+    "main.0c31b976.css.map": "/posner-webgazer-gh-pages/static/css/main.0c31b976.css.map",
+    "main.0241d488.js.map": "/posner-webgazer-gh-pages/static/js/main.0241d488.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0c31b976.css",
+    "static/js/main.0241d488.js"
+  ]
+}
